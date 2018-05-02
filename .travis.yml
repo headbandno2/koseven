@@ -37,9 +37,6 @@ before_script:
   - netstat -an | grep 3306 | grep -i listen
   - ./set_correct_permissions.sh
   - ./import_db.sh
-  - cd ..
 
 script:
-  - vendor/bin/phpunit
-  - cd docker
   - ./tests.sh

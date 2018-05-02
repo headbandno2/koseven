@@ -6,7 +6,6 @@ services:
   - docker
 
 before_script: 
-  - composer install
 
   # Let's stop mysql
   - sudo /etc/init.d/mysql stop

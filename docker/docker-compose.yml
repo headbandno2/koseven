@@ -11,7 +11,7 @@ services:
       - memcache
     volumes:
       - "./apache_sites:/etc/apache2/sites-enabled"
-      - "../../:/var/www/html"
+      - "../:/var/www/html"
   db:
     container_name: 'koseven-db'
     image: headbanno2/koseven_webdb:latest

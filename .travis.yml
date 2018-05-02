@@ -7,7 +7,7 @@ services:
 
 before_script: 
 
-  # Let's stop mysql
+  # Stop mysql
   - sudo /etc/init.d/mysql stop
 
   # wait for mysql to shutdown
@@ -28,10 +28,14 @@ before_script:
 
   # Let DB instance to boot up
   - sleep 10
+
+  # Dump for debuging
   - docker ps
-  - netstat -an | grep 3306 | grep -i listen
+
+  # Fix folder permissions in docker containers
   - ./set_correct_permissions.sh
   - ./import_db.sh
+  - ./composer.sh
 
 script:
   - ./tests.sh

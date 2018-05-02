@@ -20,6 +20,3 @@ script:
   - vendor/bin/phpunit
   - cd docker
   - ./tests.sh
-
-notifications:
-  email: false

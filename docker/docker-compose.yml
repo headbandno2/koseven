@@ -1,0 +1,28 @@
+version: '2'
+services:
+  web:
+    container_name: 'koseven-web'
+    build: './webapp'
+    ports:
+      - 80:80
+    hostname: koseven.localhost
+    links:
+      - db
+      - memcache
+    volumes:
+      - "./apache_sites:/etc/apache2/sites-enabled"
+      - "../../:/var/www/html"
+  db:
+    container_name: 'koseven-db'
+    build: ./webdb
+    ports:
+      - 3306:3306
+    environment:
+      TZ: '/usr/share/zoneinfo/America/New_York'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - "./webdb/scripts:/scripts"
+  memcache:
+    container_name: 'koseven-memcache'
+    image: memcached:1.4.26

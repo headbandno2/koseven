@@ -13,8 +13,8 @@ before_script:
   - composer install
   - cd docker
   - ./start.sh
-  - ./import_db.sh
   - ./set_correct_permissions.sh
+  - ./import_db.sh
 
 script:
   - vendor/bin/phpunit

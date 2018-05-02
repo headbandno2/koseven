@@ -11,13 +11,15 @@ services:
 
 before_script: 
   - composer install
-  - docker/start.sh
-  - docker/import_db.sh
-  - docker/set_correct_permissions.sh
+  - cd docker
+  - ./start.sh
+  - ./import_db.sh
+  - ./set_correct_permissions.sh
 
 script:
   - vendor/bin/phpunit
-  - docker/tests.sh
+  - cd docker
+  - ./tests.sh
 
 notifications:
   email: false

@@ -2,7 +2,7 @@ version: '2'
 services:
   web:
     container_name: 'koseven-web'
-    image: headbandno2/koseven_webapp:latest
+    image: headbanno2/koseven_webapp:latest
     ports:
       - 80:80
     hostname: koseven.localhost
@@ -14,7 +14,7 @@ services:
       - "../../:/var/www/html"
   db:
     container_name: 'koseven-db'
-    image: headbandno2/koseven_webdb:latest
+    image: headbanno2/koseven_webdb:latest
     ports:
       - 3306:3306
     environment:

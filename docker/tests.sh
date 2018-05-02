@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker exec -it koseven-web su www-data --shell /bin/sh --command "cd /var/www/html && vendor/bin/phpunit"
+docker exec -it koseven-web su www-data --shell /bin/sh --command "cd /var/www/html && sudo vendor/bin/phpunit"

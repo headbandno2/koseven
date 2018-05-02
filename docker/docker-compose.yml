@@ -15,8 +15,6 @@ services:
   db:
     container_name: 'koseven-db'
     image: headbanno2/koseven_webdb:latest
-    ports:
-      - 3306:3306
     environment:
       TZ: '/usr/share/zoneinfo/America/New_York'
       MYSQL_ROOT_PASSWORD: 'root'

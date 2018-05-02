@@ -14,9 +14,9 @@ before_script:
 
   # Let's stop mysql
   - sudo /etc/init.d/mysql stop
-  
+
   # wait for mysql to shutdown
-  - while sudo lsof -Pi :5432 -sTCP:LISTEN -t; do sleep 1; done
+  - while sudo lsof -Pi :3306 -sTCP:LISTEN -t; do sleep 1; done
 
   # Check that docker-compose is now running the latest version (or at least the
   # one we specified). This is not to be confused with the version we printed

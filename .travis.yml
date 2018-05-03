@@ -1,19 +1,41 @@
 dist: trusty
-language: php
+language: cpp
+sudo: required
 
-php:
-  - 7.0
-  - 7.1
-  - 7.2
+services:
+  - docker
 
 before_script: 
-  - composer install
+
+  # Stop mysql
+  - sudo /etc/init.d/mysql stop
+
+  # wait for mysql to shutdown
+  - while sudo lsof -Pi :3306 -sTCP:LISTEN -t; do sleep 1; done
+
+  # Check that docker-compose is now running the latest version (or at least the
+  # one we specified). This is not to be confused with the version we printed
+  # before doing the update.
+  - docker-compose --version
+
+  - cd docker
+  - ./start.sh
+  
+  # You will want this for logging. If one of your containers does not build for
+  # whatever reason it's best to report that now before your tests start
+  # otherwise it can be really tricky to debug why tests are failing sometimes.
+  - docker ps
+
+  # Let DB instance to boot up
+  - sleep 10
+
+  # Dump for debuging
+  - docker ps
+
+  # Fix folder permissions in docker containers
+  - ./set_correct_permissions.sh
+  - ./import_db.sh
+  - ./composer.sh
 
 script:
-  - vendor/bin/phpunit
-
-after_success:
-  - travis_retry vendor/bin/php-coveralls
-
-notifications:
-  email: false
+  - ./tests.sh
